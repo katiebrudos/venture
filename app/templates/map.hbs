@@ -1,11 +1,14 @@
 <h4>Map: "{{ name }}" </h4>
 
-<table>
-  {{#each row in rows}}
+Width: {{input calue=mapWidth size="3"}}
+Width: {{input calue=mapHeight size="3"}}
+
+<table style="border: 1px solid gray;">
+  {{#each rows as |rows|}}
   <tr>
-    {{#each cell in row.columns}}
-    
-    <td>{{}}</td>
-    
+    {{#each rows.columns as |cell|}}
+         <td>{{cell.text}}</td>
+    {{/each}}
   </tr>
+  {{/each}}
 </table>
