@@ -1,10 +1,78 @@
-<h4> Name: {{ model.name }} </h4>
-<h4> Wisdom: {{ model.wisdom }} </h4>
-<h4> Strength: {{ model.strength }} </h4>
-<h4> Constitution: {{ model.constitution }} </h4>
-<h4> Health: {{ model.health }} </h4>
-<a class="btn btn-primary btn-lg" href="character/#" role="button">Learn more</a>
+<span><h3> {{ model.name }}  </h3></span>
 
-  <button class="btn btn-lg btn-primary">
-    <span class="glyphicon glyphicon-cog"></span> Level up
+<span>Level: {{ model.level }}
+  <button {{action 'increaseStat' 'level'}}> Level up
   </button>
+</span>
+
+<br />
+
+<span> Class: {{ model.class }}
+</span>
+
+<br />
+
+<span>Health: {{model.health}} </span>
+<br />
+
+<span>Mana: {{model.mana}} </span>
+
+<br />
+
+<span> Strength:
+  <button {{action 'decreaseStat' 'strength'}}> -1
+  </button>
+  {{ model.strength }}
+  <button {{action 'increaseStat' 'strength'}}> +1
+  </button>
+</span>
+
+<br />
+
+<span> Intelligence:
+  <button {{action 'decreaseStat' 'intelligence'}}> -1
+  </button>
+  {{ model.intelligence }}
+  <button {{action 'increaseStat' 'intelligence'}}> +1
+  </button>
+</span>
+
+<br />
+
+<span> Wisdom:
+  <button {{action 'decreaseStat' 'wisdom'}}> -1
+  </button>
+  {{ model.wisdom }}
+  <button {{action 'increaseStat' 'wisdom'}}> +1
+  </button>
+</span>
+
+<br />
+
+<span> Dexterity:
+  <button {{action 'decreaseStat' 'dexterity'}}> -1
+  </button>
+  {{ model.dexterity }}
+  <button {{action 'increaseStat' 'dexterity'}}> +1
+  </button>
+</span>
+
+<br />
+
+<span> Constitution:
+  <button {{action 'decreaseStat' 'constitution'}}> -1
+  </button>
+  {{ model.constitution }}
+  <button {{action 'increaseStat' 'constitution'}}> +1
+  </button>
+</span>
+
+<br />
+
+<span> Charisma:
+  <button {{action 'decreaseStat' 'charisma'}}> -1
+  </button>
+  {{ model.charisma }}
+  <button {{action 'increaseStat' 'charisma'}}> +1
+  </button>
+</span>
