@@ -1,21 +1,44 @@
 <span><h3> {{ model.name }}  </h3></span>
 
 <span>Level: {{ model.level }}
-  <button {{action 'increaseStat' 'level'}}> Level up
+  <button class="btn btn-danger"{{action 'increaseStat' 'level'}}> Level up
   </button>
 </span>
 
 <br />
 
-<span> Class: {{ model.class }}
+<span> Class: {{ character.class }}
 </span>
 
 <br />
 
-<span>Health: {{model.health}} </span>
+<span>Health: {{character.health}} </span>
 <br />
 
-<span>Mana: {{model.mana}} </span>
+<span>Mana: {{character.mana}} </span>
+
+<br />
+<button {{action 'addItem' }}>Add item</button>
+<div>
+
+  {{#if hasItems}}
+  <table>
+  <tr>
+    <td>Name</td>
+    <td>Weight</td>
+  </tr>
+  {{#each character.items as |item| }}
+    <tr>
+      <td>{{ item.name }}</td>
+      <td>{{ item.weight }}</td>
+      <td><button {{action 'removeItem' item }}>remove</button></td>
+    </tr>
+  {{/each}}
+  </table>
+  {{else}}
+    <div>RUN AWAY, you have no items! </div>
+   {{/if}}
+</div>
 
 <br />
 
