@@ -15,11 +15,11 @@ export default Ember.Object.extend({
   dexterity: 10,
   charisma: 1,
 
-  mana: Ember.computed('level', 'intelligence', function(){
+  maxMana: Ember.computed('level', 'intelligence', function(){
     return BASE_MANA + (this.get('intelligence') * this.get('level'));
   }),
 
-  health: Ember.computed('level','constitution', function(){
+  maxHealth: Ember.computed('level','constitution', function(){
     return BASE_HP + (this.get('constitution') * this.get('level'));
   }),
 
@@ -29,14 +29,22 @@ export default Ember.Object.extend({
     return names[Math.floor(Math.random()*names.length)];
   }),
 
-  itemWeights: Ember.computed.mapBy('items', 'weights'),
+  itemWeights: Ember.computed.mapBy('items', 'weight'),
   itemWeight: Ember.computed.sum('itemWeights'),
   hampered: Ember.computed('itemWeight', 'weight', function(){
     return this.get('itemWeight') > this.get('weight');
   }),
-  
+
   items: Ember.computed(function(){
     return [Item.createRandom()];
+  }),
+  maxWeight: Ember.computed('strength', function() {
+     return this.get('strength') * 5;
+  }),
+  itemConstitutionBonuses: Ember.computed.mapBy('items','bonuses.constitution'),
+  constitutionBonus: Ember.computed.sum('itemConstitutionBonuses'),
+  effectiveConstitution: Ember.computed('constitutionBonus','constitution', function() {
+    return this.get('constitution') + this.get('constitutionBonus');
   })
 
 });
