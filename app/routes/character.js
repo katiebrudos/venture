@@ -6,6 +6,6 @@ export default Ember.Route.extend({
   model: function() {
 
     //to load data here
-    return Character.create();
+    return this.store.createRecord('character');
   }
 });

@@ -1,14 +1,25 @@
-<h4>You are in "{{ name }}"</h4>
+<div class="row">
 
-Width: {{input value=mapWidth size="3"}}
-Height: {{input value=mapHeight size="3"}}
 
-<table style="border: 1px solid gray;">
-  {{#each map.rows as |row|}}
-    <tr>
-      {{#each row.cells as |cell|}}
-        <td>{{cell.text}}</td>
-      {{/each}}
-    </tr>
-  {{/each}}
-</table>
+  <div class="col-sm-4 col-md-6">
+    <div class="panel panel-default centered">
+      <div class="panel-heading">You are in "{{ name }}"</div>
+      <div class="panel-body">
+
+        <span class="row">Width: {{input value=mapWidth size="3"}}</span>
+        <span class="row">Height: {{input value=mapHeight size="3"}}</span>
+
+        <table style="border: 1px solid gray;">
+          {{#each map.rows as |row|}}
+            <tr>
+              {{#each row.cells as |cell|}}
+                <td>{{cell.text}}</td>
+              {{/each}}
+            </tr>
+          {{/each}}
+        </table>
+
+      </div>
+    </div>
+  </div>
+</div>

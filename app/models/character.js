@@ -1,12 +1,13 @@
 import Ember from 'ember';
 import Item from './item';
+import DS from 'ember-data';
 
 const BASE_HP = 40;
 const BASE_MANA = 30;
 
-export default Ember.Object.extend({
+export default DS.Model.extend({
 
-  level: 1,
+  level: DS.attr('number', {defaultValue: 1}),
   class: "Elf",
   constitution: 6,
   wisdom: 10,
