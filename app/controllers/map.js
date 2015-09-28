@@ -12,15 +12,15 @@ var MapCell = Ember.Object.extend({
 });
 
 export default Ember.Controller.extend({
-  mapWidth: 4,
-  mapHeight: 3,
-  
+  mapWidth: 100,
+  mapHeight: 25,
+
   map: Ember.computed('mapWidth', 'mapHeight', function() {
-   var w = this.get('mapWidth'); 
+   var w = this.get('mapWidth');
    var h = this.get('mapHeight');
    return GameMap.create({rows: buildMapRows(w, h)});
   }),
-  
+
   init: function() {
     this.set('name', 'The Hopeful Forest');
   }
@@ -38,6 +38,6 @@ var buildMapRows = function(width, height) {
     rows.push(row);
   }
   return rows;
-  
-  
+
+
 };
