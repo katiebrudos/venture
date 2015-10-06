@@ -1,5 +1,18 @@
 <div class="row">
+  <div class="col-sm-12">
+    <ul>
+      {{#each characters as |char|}}
+        <li>
+          <button class="btn btn-default" {{action 'changeCharacter' char}}><span>{{char.name}}</span></button>
+        </li>
+      {{/each}}
+    </ul>
+    <button class="btn btn-default" {{action 'addCharacter'}}>New</button>
+  </div>
+</div>
 
+
+<div class="row">
 
   <div class="col-xs-12 col-sm-4">
     <div class="panel panel-default">
@@ -15,6 +28,8 @@
           </h3>
         </div>
 
+        <span class="btn btn-success" {{ action 'saveCharacter' }}>Save</span>
+        <span class="btn btn-danger" {{ action 'removeCharacter'}}>Drop</span>
 
         <div>Health</div>
         <div class="progress">

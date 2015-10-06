@@ -1,12 +1,13 @@
 import Ember from 'ember';
-import Item from './item';
+import DS from 'ember-data';
+
 
 const BASE_HP = 40;
 const BASE_MANA = 30;
 
-export default Ember.Object.extend({
+export default DS.Model.extend({
 
-  level: 1,
+  level: DS.attr('number', {defaultValue: 1}),
   class: "Elf",
   constitution: 6,
   wisdom: 10,
@@ -35,13 +36,11 @@ export default Ember.Object.extend({
     return this.get('itemWeight') > this.get('weight');
   }),
 
-  items: Ember.computed(function(){
-    return [Item.createRandom()];
-  }),
+  items: DS.hasMany('items', {async: true}),
   maxWeight: Ember.computed('strength', function() {
      return this.get('strength') * 5;
   }),
-  itemConstitutionBonuses: Ember.computed.mapBy('items','bonuses.constitution'),
+  itemConstitutionBonuses: Ember.computed.mapBy('items','constitutionBonus'),
   constitutionBonus: Ember.computed.sum('itemConstitutionBonuses'),
   effectiveConstitution: Ember.computed('constitutionBonus','constitution', function() {
     return this.get('constitution') + this.get('constitutionBonus');

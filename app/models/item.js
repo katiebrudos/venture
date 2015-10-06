@@ -1,19 +1,18 @@
 import Ember from 'ember';
+import DS from 'ember-data';
 
-var Item = Ember.Object.extend({
+export default DS.Model.extend({
+  character: DS.belongsTo('character'),
 
-  name: "",
-  weight: 0,
-  bonuses: {
-    constitution: 0,
-    strength: 0
-  }
+  name: DS.attr(),
+  weight: DS.attr('number', {defaultValue: 0}),
+  constitutionBonus: DS.attr('number', {defaultValue: 0}),
 
+  bonusStrings: Ember.computed('constitutionBonus', function() {
+    var bonusStrings = [];
+    if(this.get('constitutionBonus') > 0) {
+      bonusStrings.push("constitution "+"+"+this.get('constitutionBonus'));
+    }
+    return bonusStrings;
+  })
 });
-
-Item.reopenClass({
-  createRandom: function(){
-    return Item.create({name: "The magic sword", weight:10, bonuses: {constitution:3} });
-  }
-});
-export default Item;
