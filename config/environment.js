@@ -42,6 +42,14 @@ module.exports = function(environment) {
   if (environment === 'production') {
 
   }
+	ENV['simple-auth'] = {
+    authorizer: 'simple-auth-authorizer:devise'
+  }
+  ENV['simple-auth-devise'] = {
+    serverTokenEndpoint: '/users/sign_in',
+    tokenAttributeName: 'token',
+	 identificationAttributeName: 'email'
+  };
 
   return ENV;
 };
