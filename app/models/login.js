@@ -1,8 +1,6 @@
-import DS from 'ember-data';
+import Ember from 'ember';
+import UnauthenticatedRouteMixin from 'simple-auth/mixins/unauthenticated-route-mixin';
 
-export default DS.Model.extend({
-
-	identification: DS.attr('string'),
-	password: DS.attr('string')
-
+export default Ember.Route.extend(UnauthenticatedRouteMixin, {
+	
 });

@@ -5,7 +5,20 @@
 			Login screen
 		</div>
 		<div class="panel-body">
-			{{input type=text placeholder='Press enter when done' enter='signIn'}}
+			<form {{action "authenticate" on="submit"}}>
+				<div>
+					<label for="identification">E-mail</label><br />
+					{{input value=identification placeholder="E-mail" type="text" }}
+				</div>
+				<div>
+					<label for="password">Password</label><br />
+					{{input value=password placeholder="password" type="text" }}
+				</div>
+				<div>
+					<button type="submit">Log In </button>
+				</div>
+			</form>
+
 		</div>
 	</div>
 </div>

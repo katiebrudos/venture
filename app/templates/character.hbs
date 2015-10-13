@@ -66,7 +66,34 @@
 
 
   <div class="col-xs-12 col-sm-4">
-    {{ modify-character-stat character=character}}
+	 <div class="panel panel-default">
+      <div class="panel-heading">Stats</div>
+      <div class="panel-body">
+        <table class="table table-hover">
+          <thead>
+              <th>stat</th>
+              <th>&nbsp;</th>
+              <th>value</th>
+              <th>&nbsp;</th>
+              <th>bonus</th>
+          </thead>
+
+          <tbody>
+          	{{ modify-character-stat label='Strength' stat=character.strength}}
+				{{ modify-character-stat label='Intelligence' stat=character.intelligence}}
+				{{ modify-character-stat label='Wisdom' stat=character.wisdom}}
+				{{ modify-character-stat label='Charisma' stat=character.charisma}}
+				{{ modify-character-stat label='Dexterity' stat=character.dexterity}}
+				{{ modify-character-stat label='Constitution' stat=character.constitution}}
+          </tbody>
+
+        </table>
+
+      </div>
+    </div>
+
+{{yield}}
+
   </div>
 
 
