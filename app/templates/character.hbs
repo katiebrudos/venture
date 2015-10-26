@@ -79,12 +79,12 @@
           </thead>
 
           <tbody>
-          	{{ modify-character-stat label='Strength' stat=character.strength}}
-				{{ modify-character-stat label='Intelligence' stat=character.intelligence}}
-				{{ modify-character-stat label='Wisdom' stat=character.wisdom}}
-				{{ modify-character-stat label='Charisma' stat=character.charisma}}
-				{{ modify-character-stat label='Dexterity' stat=character.dexterity}}
-				{{ modify-character-stat label='Constitution' stat=character.constitution}}
+          	{{ modify-character-stat label='strength' stat=character.strength bonus=character.strengthBonsu}}
+            {{ modify-character-stat label='intelligence' stat=character.intelligence bonus=character.intelligenceBonus}}
+            {{ modify-character-stat label='wisdom' stat=character.wisdom bonus=character.wisdomBonus}}
+            {{ modify-character-stat label='dexterity' stat=character.dexterity bonus=character.dexterityBonus}}
+            {{ modify-character-stat label='constitution' stat=character.constitution bonus=character.constitutionBonus}}
+            {{ modify-character-stat label='charisma' stat=character.charisma bonus=character.charismaBonus}}
           </tbody>
 
         </table>
