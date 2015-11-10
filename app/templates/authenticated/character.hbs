@@ -1,38 +1,45 @@
 <div class="row">
-  <div class="col-sm-12">
-    <ul>
-      {{#each characters as |char|}}
-        <li>
-          <button class="btn btn-default" {{action 'changeCharacter' char}}><span>{{char.name}}</span></button>
-        </li>
-      {{/each}}
-    </ul>
-    <button class="btn btn-default" {{action 'addCharacter'}}>New</button>
-  </div>
+  	<div class="col-sm-12">
+  		<ul class="list-inline">
+      	{{#each characters as |char|}}
+        		<li>
+        			<button class="btn btn-default" {{action 'changeCharacter' char}}><span>{{char.name}}</span></button>
+        		</li>
+      	{{/each}}
+    		<li><button class="btn btn-default" {{action 'addCharacter'}}>New</button></li>
+		</ul>
+	 </div>
 </div>
 
 
 <div class="row">
 
-  <div class="col-xs-12 col-sm-4">
-    <div class="panel panel-default">
-      <div class="panel-heading">Character Info</div>
-      <div class="panel-body">
+  	<div class="col-xs-12 col-sm-4">
+    	<div class="panel panel-default">
+      	<div class="panel-heading">Character Info</div>
+      	<div class="panel-body">
 
-        <div class="">
-          <h3>{{ character.name }} | Level
-            <button {{action 'increaseStat' 'level' }}
-              class="btn btn-sm">{{ character.level }}
-              <span class="glyphicon glyphicon-upload"></span>
-            </button> {{ character.class }}
-          </h3>
-        </div>
+        	<div>
+          	<h3>{{ input value=character.name class="form-control" }}
 
-        <span class="btn btn-success" {{ action 'saveCharacter' }}>Save</span>
-        <span class="btn btn-danger" {{ action 'removeCharacter'}}>Drop</span>
+					{{#each errors.character.name as |err|}}
+						<span class="label label-danger"> {{err}} </span>
+					{{/each}}
 
-        <div>Health</div>
-        <div class="progress">
+					| Level
+            	<button {{action 'levelUp' }}
+              		class="btn btn-sm">{{ character.level }}
+              			<span class="glyphicon glyphicon-upload"></span>
+            	</button>
+					{{ character.class }}
+          	</h3>
+        	</div>
+
+        	<span class="btn btn-success" {{ action 'saveCharacter' }}>Save</span>
+        	<span class="btn btn-danger" {{ action 'removeCharacter'}}>Drop</span>
+
+        	<div>Health</div>
+        	<div class="progress">
           <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;">
             <span>HP: {{ character.maxHealth}} / {{ character.maxHealth}}</span>
           </div>

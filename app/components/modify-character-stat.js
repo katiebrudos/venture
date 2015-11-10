@@ -4,13 +4,21 @@ export default Ember.Component.extend({
 
 	tagName: 'tr',
 
+	hasPointsLeft: Ember.computed.gt('pointsLeft', 0),
+
 	actions: {
-		increaseStat: function(stat){
-      	this.incrementProperty(stat);
+		increaseStat: function(){
+			if(this.get('hasPointsLeft')){
+				this.incrementProperty('stat');
+				this.decrementProperty('pointsLeft');
+			}
     	},
 
-		decreaseStat: function(stat){
-      	this.decrementProperty(stat);
+		decreaseStat: function(){
+			if(this.get('stat') > 1){
+	      	this.decrementProperty('stat');
+				this.incrementProperty('pointsLeft');
+			}
     	}
 	}
 });

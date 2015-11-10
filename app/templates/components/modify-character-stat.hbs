@@ -4,6 +4,6 @@
 </td>
 <td> {{ stat }} </td>
 <td>
-  <span {{action 'increaseStat'}} class="btn btn-default btn-xs">+</span>
+  <span {{action 'increaseStat'}} disabled={{unless hasPointsLeft 'disabled'}} class="btn btn-default btn-xs">+</span>
 </td>
 <td>{{ bonus }}</td>

@@ -7,27 +7,26 @@ const BASE_MANA = 30;
 
 export default DS.Model.extend({
 
-  level: DS.attr('number', {defaultValue: 1}),
-  class: "Elf",
-  constitution: 6,
-  wisdom: 10,
-  strength: 5,
-  intelligence: 4,
-  dexterity: 10,
-  charisma: 1,
+	name: DS.attr('string', {defaultValue: "DefaultName"}),
+	characterClass: DS.attr('string', {
+		defaultValue: function() {
+			var classes = ["Wizard", "Elf", "Blacksmith"];
+			return classes[Math.floor(Math.random()*classes.length)];
+		}
+	}),
+	level: DS.attr('number', {defaultValue: 1}),
+   constitution: DS.attr('number', {defaultValue: 5}),
+   wisdom: DS.attr('number', {defaultValue: 10}),
+   strength: DS.attr('number', {defaultValue: 1}),
+   intelligence: DS.attr('number', {defaultValue: 1}),
+   dexterity: DS.attr('number', {defaultValue: 1}),
+   charisma: DS.attr('number', {defaultValue: 1}),
+   maxMana: Ember.computed('level', 'intelligence', function(){
+     return BASE_MANA + (this.get('intelligence') * this.get('level'));
+   }),
 
-  maxMana: Ember.computed('level', 'intelligence', function(){
-    return BASE_MANA + (this.get('intelligence') * this.get('level'));
-  }),
-
-  maxHealth: Ember.computed('level','constitution', function(){
+   maxHealth: Ember.computed('level','constitution', function(){
     return BASE_HP + (this.get('constitution') * this.get('level'));
-  }),
-
-  name: Ember.computed(function(){
-
-    var names = ['Abby', 'Katie', 'Hailey'];
-    return names[Math.floor(Math.random()*names.length)];
   }),
 
   itemWeights: Ember.computed.mapBy('items', 'weight'),

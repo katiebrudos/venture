@@ -1,7 +1,11 @@
 import Ember from 'ember';
+import EmberValidations from 'ember-validations';
 
 //decorate the models (formatting) and processing actions
-export default Ember.Controller.extend({
+export default Ember.Controller.extend(EmberValidations,{
+	validations: {
+		'character.name': {presence:true, length:{minimum: 3}}
+	},
 
   characters:Ember.computed.alias('model'),
   character: Ember.computed.alias('characters.firstObject'),
@@ -12,12 +16,20 @@ export default Ember.Controller.extend({
   burdenPercent: Ember.computed('character.itemWeight', 'character.maxWeight', function() {
     return Math.min(this.get('character.itemWeight') / this.get('character.maxWeight') * 100, 100);
   }),
-
   _modifyStat: function(stat, amount){
-    this.set('model.'+stat, this.get('model.'+stat)+amount);
+    this.set('character.'+stat, this.get('character.'+stat)+amount);
   },
 
+
   actions: {
+	  levelUp: function(){
+		 this.incrementProperty('character.level');
+		 this.send('showModal', {
+			 template: 'level-character',
+			 character: this.get('character'),
+			 pointsLeft: 3
+		 });
+	  },
     changeCharacter: function(char){
       this.set('character',char);
     },
