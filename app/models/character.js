@@ -7,7 +7,13 @@ const BASE_MANA = 30;
 
 export default DS.Model.extend({
 
-	name: DS.attr('string', {defaultValue: "DefaultName"}),
+	statPointsToSpend: DS.attr('number', {defaultValue: 20}),
+	name: DS.attr('string', {
+		defaultValue: function() {
+      var names = ['Zultar', 'Zorky', 'Merlin'];
+      return names[Math.floor(Math.random()*names.length)];
+    }
+	}),
 	characterClass: DS.attr('string', {
 		defaultValue: function() {
 			var classes = ["Wizard", "Elf", "Blacksmith"];
