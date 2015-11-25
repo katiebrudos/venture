@@ -1,72 +1,46 @@
 <div class="row">
-  <h4>You are in "{{ name }}"</h4>
+  <div class="col-sm-12">
+    <h4>You are in "{{ name }}"</h4>
+  </div>
 </div>
-Width: {{input value=mapWidth size="3"}}
-Height: {{input value=mapHeight size="3"}}
 
 <div class="row">
-
   <div class="col-sm-3">
-  
-  
-    <div class="panel panel-default">
-      <div class="panel-heading">Character Info</div>
-      <div class="panel-body">
-
-        <div class="">
-          <h3>{{ character.name }} | Level
-            <button {{action 'increaseStat' 'level' }}
-              class="btn btn-sm">{{ character.level }}
-              <span class="glyphicon glyphicon-upload"></span>
-            </button> {{ character.class }}
-          </h3>
-        </div>
-
-
-        <div>Health</div>
-        <div class="progress">
-          <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;">
-            <span>HP: {{ character.maxHealth}} / {{ character.maxHealth}}</span>
-          </div>
-        </div>
-
-        <div>Mana</div>
-        <div class="progress">
-          <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;">
-            <span>MP: {{ character.maxMana}} / {{ character.maxMana}}</span>
-          </div>
-        </div>
-
-        <div>Burden</div>
-        <div class="progress">
-          <div class="progress-bar progress-bar-{{if character.hampered 'warning' }}" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: {{ burdenPercent }}%;">
-            <span>{{ character.itemWeight}} / {{ character.maxWeight}}</span>
-          </div>
-        </div>
-
-        <div>
-          <h3>Navigation Buttons</h3>
-        </div>
-
-        {{#if hampered}}
-
-        <div class="">
-          <h3>You are carrying too much stuff!!!</h3>
-        </div>
-        {{else}}
-        {{/if}}
-
+    <div class="col-sm-12" style="height: 200px;">
+      <div>CHARACTER</div>
+      <span>{{character.x}}, {{character.y}}</span>
+    </div>
+    <div class="col-sm-12">
+      Width: {{input value=mapWidth size="3"}}
+      Height: {{input value=mapHeight size="3"}}
+    </div>
+    <div class="row">
+      <div class="col-sm-4 col-sm-offset-4">
+        <span class="btn btn-default" {{action 'move' 0 -1 }}>UP!</span>
       </div>
     </div>
+    <div class="row">
+      <div class="col-sm-4">
+        <span class="btn btn-default"{{action 'move' -1 0 }}>LEFT!</span>
+      </div>
+      <div class="col-sm-4 col-sm-offset-4">
+        <span class="btn btn-default" {{action 'move' 1 0 }}>RIGHT!</span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-4 col-sm-offset-4">
+        <span class="btn btn-default"{{action 'move' 0 1 }}>DOWN!</span>
+      </div>
+    </div>
+
   </div>
 
   <div class="col-sm-9">
-
-    <table style="border: 1px solid gray;">
-      {{#each map.rows as |row|}}
-      <tr>
-        {{#each row.cells as |cell|}}
-        <td style="color:blue">{{cell.text}}</td>
+    <table class='map' style="border: 1px solid gray;">
+      {{#each rows as |row|}}
+        <tr>
+          {{#each row as |cell|}}
+          <td class="tile {{ cell.tileClass }} {{if cell.hasCharacter 'h5'}}">{{cell.text}}</td>
           {{/each}}
         </tr>
       {{/each}}
